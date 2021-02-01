@@ -17,7 +17,6 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 5rem;
 }
 .search {
   background: #ffffff;
@@ -29,6 +28,27 @@
   width: 400px;
   outline: none;
   color: #555555;
+}
+.field-area {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+.addMoreButton {
+  background: #2f3542;
+  border: 2px solid #ff6b81;
+  border-radius: 1rem;
+  width: 200px;
+  outline: none;
+  padding: 0.8rem 0.8rem;
+  margin: 0 2rem;
+  cursor: pointer;
+}
+.link {
+  color: #ff6b81;
+  font-size: 2rem;
+  font-weight: 200;
+  text-decoration: none;
 }
 .submit {
   background: #ff6b81;
@@ -44,9 +64,14 @@
   box-shadow: 3px 3px 10px 6px #77777738;
   cursor: pointer;
 }
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 .recipeCard {
   width: 60rem;
-  margin: 1rem 0;
+  margin: 3rem;
   border-radius: 1rem;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -67,6 +92,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  width: 90%;
 }
 .recipeTitle {
   color: white;
@@ -75,14 +102,20 @@
 }
 .leftRightContainer {
   display: flex;
+  justify-content: center;
+
+  width: 100%;
 }
 .left {
-  width: 40%;
+  width: 45%;
   margin: 1rem;
 }
 .right {
-  width: 60%;
+  width: 55%;
   margin: 1rem;
+
+  border-radius: 1rem;
+  border: 1px solid #555555;
 }
 .ingredientLists {
   font-size: 1.6rem;
