@@ -6,6 +6,17 @@ const Home = () => {
 
     const [recipes, setRecipes] = useState([]);
 
+
+    const validURL = (str) => {
+        var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+            '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+            '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+        return !!pattern.test(str);
+    }
+
     useEffect(() => {
         const item = JSON.parse(localStorage.getItem('recipe'));
         if (item) {
@@ -40,7 +51,7 @@ const Home = () => {
                 {
                     recipes.map((recipe, index) => (
                         <div key={index} className='recipeCard'>
-                            <img className='recipeImage' src='https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' alt='food1' />
+                            <img className='recipeImage' src={validURL(recipe.imageURL) ? recipe.imageURL : 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'} alt='ImageHere' />
                             <div className='textArea'>
                                 <h3 className='recipeTitle'>{recipe.recipeName}</h3>
 
