@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 const Home = () => {
 
     const [recipes, setRecipes] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
 
     const validURL = (str) => {
@@ -16,6 +18,18 @@ const Home = () => {
             '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
         return !!pattern.test(str);
     }
+
+    const handleSearchIngredients = () => {
+        const recipesAcc = [...recipes];
+        const regex = new RegExp(searchValue, "gi");
+        const searchResults = recipesAcc.reduce((acc, recipe) => {
+            if (recipe.recipeName && recipe.recipeName.match(regex)) {
+                acc.push(recipe);
+            }
+            return acc;
+        }, []);
+        setSearchResults(searchResults);
+    };
 
     useEffect(() => {
         const item = JSON.parse(localStorage.getItem('recipe'));
@@ -35,6 +49,11 @@ const Home = () => {
                             className="search"
                             name="search"
                             type="text"
+                            value={searchValue}
+                            onChange={(e) => {
+                                setSearchValue(e.target.value)
+                                handleSearchIngredients()
+                            }}
                             placeholder='Serach here...'
                         />
                         <button className="submit">
@@ -49,7 +68,7 @@ const Home = () => {
 
             <div className='flex-wrap'>
                 {
-                    recipes.map((recipe, index) => (
+                    searchResults.length > 0 ? searchResults.map((recipe, index) => (
                         <div key={index} className='recipeCard'>
                             <img className='recipeImage' src={validURL(recipe.imageURL) ? recipe.imageURL : 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'} alt='ImageHere' />
                             <div className='textArea'>
@@ -85,7 +104,45 @@ const Home = () => {
                                 <p className='footerText'>Added by: {recipe.authorName}</p>
                             </div>
                         </div>
-                    ))
+                    )
+                    ) :
+                        recipes.map((recipe, index) => (
+                            <div key={index} className='recipeCard'>
+                                <img className='recipeImage' src={validURL(recipe.imageURL) ? recipe.imageURL : 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'} alt='ImageHere' />
+                                <div className='textArea'>
+                                    <h3 className='recipeTitle'>{recipe.recipeName}</h3>
+
+                                    <div className='leftRightContainer'>
+                                        <div className='left'>
+                                            <p className='ingredientLists'>{recipe.ingredientsList}</p>
+                                            <br />
+                                            <p className='ingredientLists'>{recipe.description}</p>
+                                            <br />
+                                            <p className='ingredientLists'>NOTE: Quantity is measured in {recipe.unit}</p>
+                                        </div>
+                                        <div className='right'>
+                                            <div className='row'>
+                                                <h4 className='cardSubtitle'>Ingredients</h4>
+                                                <h4 className='cardSubtitle'>Quantity</h4>
+                                            </div>
+                                            {
+                                                recipe.ingredients.map((ingredient, subIndex) => (
+                                                    <div key={subIndex} className='rowData'>
+                                                        <p className='cardSubtitleData'>{ingredient.ingredient}</p>
+                                                        <p className='cardSubtitleData'>{ingredient.quantity}</p>
+                                                    </div>
+                                                ))
+                                            }
+
+                                        </div>
+                                    </div>
+
+                                    <br />
+                                    <br />
+                                    <p className='footerText'>Added by: {recipe.authorName}</p>
+                                </div>
+                            </div>
+                        ))
                 }
             </div>
         </div>
