@@ -11,7 +11,7 @@ const AddRecipe = () => {
     const [imageURL, setImageURL] = useState('')
     const [description, setDescription] = useState('')
     const [authorName, setAuthorName] = useState('')
-    const [errors, setErrors] = useState([]);
+    const [error, setError] = useState('');
 
     const [recipeStore, setRecipeStore] = useState([]);
 
@@ -68,17 +68,13 @@ const AddRecipe = () => {
         setAuthorName('');
         setDescription('');
         setIngredients([{ ingredient: '', quantity: '' }]);
+        setError('');
     }
 
     const formvalid = () => {
         if (isFormEmpty()) {
-            const errorMessage = { message: "Fill in all fields" };
-
-            const newMesage = [...errors];
-            newMesage.push(errorMessage);
-            setErrors(newMesage)
+            setError('Fill in all fields.')
             //setErrors([...errors, errorMessage])
-            console.log(errors)
             return false;
         } else {
             return true;
@@ -181,6 +177,7 @@ const AddRecipe = () => {
                     onChange={(e) => setAuthorName(e.target.value)}
                     placeholder='Author Name'
                 />
+                {error.length > 0 ? <h4 className='errorText'>{error}</h4> : ''}
                 <button className="submitForm" onClick={handleSubmit} >
                     Save Recipe
                 </button>

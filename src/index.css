@@ -11,9 +11,36 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  background-color: #2f3542;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+@media only screen and (max-width: 860px) {
+  html {
+    font-size: 9px;
+  }
+}
+@media only screen and (max-width: 695px) {
+  html {
+    font-size: 8px;
+  }
+}
+@media only screen and (max-width: 595px) {
+  html {
+    font-size: 7px;
+  }
+}
+@media only screen and (max-width: 525px) {
+  html {
+    font-size: 6px;
+  }
+}
+@media only screen and (max-width: 435px) {
+  html {
+    font-size: 5px;
+  }
 }

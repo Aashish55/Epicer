@@ -1,0 +1,21 @@
+.error {
+  height: 60rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.error-title {
+  font-size: 6rem;
+  font-weight: 300;
+  margin: 2rem;
+}
+.error-title span {
+  font-weight: 500;
+}
+.error-subtitle {
+  font-size: 3rem;
+  color: slategray;
+}

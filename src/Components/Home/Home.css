@@ -8,6 +8,7 @@
 }
 .title {
   font-size: 10rem;
+  margin: 2rem;
 }
 .title span {
   font-weight: 300;
@@ -21,18 +22,28 @@
 .search {
   background: #ffffff;
   border: 2px solid #ff6b81;
-  border-top-left-radius: 1.5rem;
-  border-bottom-left-radius: 1.5rem;
+  border-radius: 1.5rem;
   font-size: 2rem;
   padding: 0.8rem 0.8rem;
-  width: 400px;
+  width: 40rem;
   outline: none;
   color: #555555;
 }
+@media only screen and (max-width: 595px) {
+  .search {
+    font-size: 9px;
+  }
+}
+
 .field-area {
   display: flex;
   align-items: center;
   margin-bottom: 5rem;
+}
+@media only screen and (max-width: 840px) {
+  .field-area {
+    flex-direction: column;
+  }
 }
 .addMoreButton {
   background: #2f3542;
@@ -41,7 +52,7 @@
   width: 200px;
   outline: none;
   padding: 0.8rem 0.8rem;
-  margin: 0 2rem;
+  margin: 2rem 2rem;
   cursor: pointer;
 }
 .link {
@@ -50,20 +61,7 @@
   font-weight: 200;
   text-decoration: none;
 }
-.submit {
-  background: #ff6b81;
-  border: 2px solid #ff6b81;
-  border-top-right-radius: 1.5rem;
-  border-bottom-right-radius: 1.5rem;
-  width: 120px;
-  outline: none;
-  padding: 0.8rem 0.8rem;
-  color: white;
-  font-size: 2rem;
-  font-weight: 300;
-  box-shadow: 3px 3px 10px 6px #77777738;
-  cursor: pointer;
-}
+
 .flex-wrap {
   display: flex;
   flex-wrap: wrap;

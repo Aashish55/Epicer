@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css'
 import { Link } from "react-router-dom";
+import Error from '../Error/Error'
 
 const Home = () => {
 
@@ -99,28 +100,27 @@ const Home = () => {
                             onChange={(e) =>
                                 setSearchValue(e.target.value)
                             }
-                            placeholder='Serach here...'
+                            placeholder='Search by ingredients.'
                         />
-                        <button className="submit">
-                            Search
-                        </button>
                     </div>
                 </div>
                 <button className="addMoreButton">
                     <Link className='link' to="/add">Add More Recipe</Link>
                 </button>
             </div>
+            {
+                recipes.length > 0 ? <div className='flex-wrap'>
+                    {
+                        searchResults.length > 0 ? searchResults.map((recipe, index) => (
+                            displayRecipeCard(recipe, index))
+                        ) :
+                            recipes.map((recipe, index) => (
+                                displayRecipeCard(recipe, index)
+                            ))
+                    }
+                </div> : <Error />
+            }
 
-            <div className='flex-wrap'>
-                {
-                    searchResults.length > 0 ? searchResults.map((recipe, index) => (
-                        displayRecipeCard(recipe, index))
-                    ) :
-                        recipes.map((recipe, index) => (
-                            displayRecipeCard(recipe, index)
-                        ))
-                }
-            </div>
         </div>
     );
 }
