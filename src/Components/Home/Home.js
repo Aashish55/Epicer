@@ -2,20 +2,23 @@ import React, { useState, useEffect } from 'react';
 import './Home.css'
 import { Link } from "react-router-dom";
 import Error from '../Error/Error'
+import { useSelector, useDispatch } from 'react-redux'
+import { saveRecipe } from '../../Redux/Action/Action';
 
 const Home = () => {
 
-    const [recipes, setRecipes] = useState([]);
+    // const [recipes, setRecipes] = useState([]);
     const [searchValue, setSearchValue] = useState('');
+    const recipeFromStore = useSelector(state => state.updatedRecipe)
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
         const item = JSON.parse(localStorage.getItem('recipe'));
         if (item) {
-            setRecipes(item)
+            dispatch(saveRecipe(item))
         }
-        console.log(item)
-
+        // console.log(recipes)
     }, [])
 
     const validURL = (str) => {
@@ -68,7 +71,7 @@ const Home = () => {
 
     const regex = new RegExp(searchValue, "gi");
 
-    const searchResults = recipes.filter((recipe) => {
+    const searchResults = recipeFromStore.filter((recipe) => {
 
         if (recipe.recipeName && recipe.recipeName.match(regex)) {
             return true;
@@ -109,24 +112,20 @@ const Home = () => {
                 </button>
             </div>
             {
-                recipes.length > 0 ? <div className='flex-wrap'>
+                recipeFromStore.length > 0 ? <div className='flex-wrap'>
                     {
                         searchResults.length > 0 ? searchResults.map((recipe, index) => (
                             displayRecipeCard(recipe, index))
                         ) :
-                            recipes.map((recipe, index) => (
+                            recipeFromStore.map((recipe, index) => (
                                 displayRecipeCard(recipe, index)
                             ))
                     }
                 </div> : <Error />
             }
-
         </div>
     );
 }
 
 
 export default Home;
-
-//value={searchValue}
-//onChange={this.handleChange}

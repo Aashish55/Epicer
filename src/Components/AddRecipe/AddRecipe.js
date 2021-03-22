@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import './AddRecipe.css'
+import { useDispatch } from 'react-redux'
 import { Link } from "react-router-dom";
+import { saveRecipe } from '../../Redux/Action/Action';
 
 const AddRecipe = () => {
 
@@ -12,6 +14,8 @@ const AddRecipe = () => {
     const [description, setDescription] = useState('')
     const [authorName, setAuthorName] = useState('')
     const [error, setError] = useState('');
+    const dispatch = useDispatch();
+
 
     const [recipeStore, setRecipeStore] = useState([]);
 
@@ -55,6 +59,7 @@ const AddRecipe = () => {
             setRecipeStore(newStore)
             //setRecipeStore(oldStore => [...oldStore, { recipeData }])
             console.log(recipeStore);
+            dispatch(saveRecipe(recipeStore))
             localStorage.setItem('recipe', JSON.stringify(newStore));
             clearInputFields();
         }

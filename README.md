@@ -1,3 +1,8 @@
+## Screenshots of the app
+
+<img src='/src/images/Screenshot1.png' width="800px">
+<img src='/src/images/Screenshot2.png' width="800px">
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
