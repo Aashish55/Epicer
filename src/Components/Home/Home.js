@@ -110,6 +110,9 @@ const Home = () => {
                 <button className="addMoreButton">
                     <Link className='link' to="/add">Add More Recipe</Link>
                 </button>
+                <button className="addMoreButton">
+                    <Link className='link' to="/json">JSON Page</Link>
+                </button>
             </div>
             {
                 recipeFromStore.length > 0 ? <div className='flex-wrap'>

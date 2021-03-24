@@ -1,0 +1,41 @@
+.jsonPage{
+    padding: 2rem;
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+.individual_box{
+    margin: 2rem;
+    border-radius: 1rem;
+    padding: 1rem 3rem;
+
+    display: flex;
+    flex-direction: column;
+    
+}
+.individual_box:nth-child(odd) {
+    background-color: #747d8c;
+}
+.individual_box:nth-child(even) {
+    background-color: #ff6b81;
+}
+.individual_box:nth-child(odd) span{
+    color: #ff6b81;
+    font-weight: 600;
+}
+
+.individual_box:nth-child(even) span{
+    color: #747d8c;
+    font-weight: 600;
+}
+.userTitle{
+    font-size: 3rem;
+    font-weight: 300;
+    color: white;
+}
+.subtitle{
+    font-size: 1.6rem;
+    font-family: 400;
+    color: white;
+}
